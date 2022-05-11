@@ -1,5 +1,5 @@
 class SurveysController < ApplicationController
-  before_action :authenticate_admin!, expept: [:index, :show]
+  before_action :authenticate_admin!, except: %i[index show]
 
   def index
     @surveys = Survey.all
