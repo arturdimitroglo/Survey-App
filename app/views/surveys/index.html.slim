@@ -3,4 +3,4 @@ h1 Surveys
 ul 
   - @surveys.each do |survey|
     li
-      = survey.title
+      = link_to survey.title, survey
