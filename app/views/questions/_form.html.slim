@@ -1,0 +1,8 @@
+= turbo_frame_tag params[:question_type]
+  = form_with method: :get do |form|
+    div
+      = form.label :question_type
+      = form.select :question_type, [['multiple choice','multiple_choice'], ['open-ended', 'open_ended'], ['multiple-answer','multiple_answer']]
+    div
+      = form.submit
+    
