@@ -1,6 +1,6 @@
 h1 Surveys
 = link_to 'sign-up', 'admins/sign_up'
 ul 
-  -@surveys.each do |survey|
+  - @surveys.each do |survey|
     li
       = survey.title
