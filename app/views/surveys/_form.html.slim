@@ -4,14 +4,14 @@
     br
     = form.text_field :title
     ul
-    - survey.erros.messages.full_messages_for(:title).each do |message|
+    - survey.errors.full_messages_for(:title).each do |message|
       li
         = message
   div
     = form.label :description
     br
     = form.text_area :description
-    - survey.erros.messages.full_messages_for(:description).each do |message|
+    - survey.errors.full_messages_for(:description).each do |message|
       li
         = message
   div
