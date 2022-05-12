@@ -9,6 +9,8 @@
 -elsif params[:question_type] == 'multiple_choice'
     = form_with model: [survey, question] do |form|
       div
+        = form.hidden_field :question_type ,value:params[:question_type]
+      div
         = form.label :title
         = form.text_field :title
       div
@@ -35,6 +37,8 @@
 -elsif params[:question_type] == 'open_ended'
     = form_with model: [survey, question] do |form|
       div
+        = form.hidden_field :question_type ,value:params[:question_type]
+      div
         = form.label :title
         = form.text_field :title
       div
@@ -45,6 +49,8 @@
 
 -elsif params[:question_type] == 'multiple_answer'
     = form_with model: [survey, question] do |form|
+      div
+        = form.hidden_field :question_type ,value:params[:question_type]
       div
         = form.label :title
         = form.text_field :title
