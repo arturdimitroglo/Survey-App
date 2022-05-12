@@ -7,17 +7,18 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.new(question_params)
+    @survey = Survey.find(params[:survey_id])
+    @question = @survey.questions.new(question_params)
 
     if @question.save
-      redirect_to @question.survey
+      redirect_to new_survey_question_path(@survey)
     else
-      render :new, status: :unprocessble_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
   private
   def question_params
-    params.require(:question).permit(:title, :question_type)
+    params.require(:question).permit(:title, :question_type, :choice_1, :choice_2, :choice_3, :choice_4, :choice_5, :choice_6)
   end
 end
