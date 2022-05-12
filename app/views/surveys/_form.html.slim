@@ -1,18 +1,18 @@
 = form_with model:survey do |form|
-  div
-    = form.label :title
+  div class='mb-3'
+    = form.label :title, class:'form-label'
     br
-    = form.text_field :title
+    = form.text_field :title, class:'form-control'
     ul
     - survey.errors.full_messages_for(:title).each do |message|
       li
         = message
-  div
-    = form.label :description
+  div class='mb-3'
+    = form.label :description, class:'form-label'
     br
-    = form.text_area :description
+    = form.text_area :description, class:'form-control'
     - survey.errors.full_messages_for(:description).each do |message|
       li
         = message
-  div
-    = form.submit
+  div class='mb-3'
+    = form.submit 'Submit', class:'btn btn-md btn-success'
