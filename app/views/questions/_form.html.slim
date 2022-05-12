@@ -12,6 +12,24 @@
         = form.label :title
         = form.text_field :title
       div
+        = form.label :choice_1
+        = form.text_field :choice_1
+      div
+        = form.label :choice_2
+        = form.text_field :choice_2
+      div
+        = form.label :choice_3
+        = form.text_field :choice_3
+      div
+        = form.label :choice_4
+        = form.text_field :choice_4
+      div
+        = form.label :choice_5
+        = form.text_field :choice_5
+      div
+        = form.label :choice_6
+        = form.text_field :choice_6
+      div
         = form.submit
 
 -elsif params[:question_type] == 'open_ended'
@@ -20,6 +38,9 @@
         = form.label :title
         = form.text_field :title
       div
+        = form.label :open_ended_answer
+        = form.text_field :open_ended_answer
+      div
         = form.submit
 
 -elsif params[:question_type] == 'multiple_answer'
@@ -27,5 +48,26 @@
       div
         = form.label :title
         = form.text_field :title
+              div
+        = form.label :title
+        = form.text_field :title
+      div
+        = form.label :choice_1
+        = form.text_field :choice_1
+      div
+        = form.label :choice_2
+        = form.text_field :choice_2
+      div
+        = form.label :choice_3
+        = form.text_field :choice_3
+      div
+        = form.label :choice_4
+        = form.text_field :choice_4
+      div
+        = form.label :choice_5
+        = form.text_field :choice_5
+      div
+        = form.label :choice_6
+        = form.text_field :choice_6
       div
         = form.submit
