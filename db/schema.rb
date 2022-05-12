@@ -38,6 +38,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_11_100202) do
   create_table "surveys", force: :cascade do |t|
     t.string "title"
     t.text "description"
+    t.text "choice_1"
+    t.text "choice_2"
+    t.text "choice_3"
+    t.text "choice_4"
+    t.text "choice_5"
+    t.text "choice_6"
+    t.text "open_ended_answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "admin_id", null: false
