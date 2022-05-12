@@ -1,19 +1,27 @@
-h1 Edit Survey
-= render 'form', survey:@survey
-h1 Questions
-div class='questions'
-  table class='table align-middle table-sm'   
+div class='container d-flex align-items-center justify-content-center'
+  h1 Edit Survey
+
+div class='container d-flex align-items-center justify-content-center'
+  = render 'form', survey:@survey
+
+div class='container d-flex align-items-center justify-content-center'
+  h1 Questions
+
+div class='container d-flex align-items-center justify-content-center'
+  table class='table table-hover table-bordered'   
     thead
       tr 
         th Title
+        th Edit
+        th Delete
     tbody
     - @survey.questions.each do |question|
       tr 
         td class='question-title'
           = question.title
         td 
-          = link_to 'Edit question', edit_survey_question_path(@survey, question),class:'btn btn-success'
-        td 
-          = link_to 'Delete question', survey_question_path(@survey, question), data: {turbo_method: :delete, turbo_confirm:'Are you sure?'}, class:'btn btn-danger'
-
-  = link_to 'Add questions', new_survey_question_path(@survey, survey_edit:true)
+          = link_to 'Edit question', edit_survey_question_path(@survey, question),class:'btn btn-primary btn-md'
+        td
+          = link_to 'Delete question', survey_question_path(@survey, question), data: {turbo_method: :delete, turbo_confirm:'Are you sure?'}, class:'btn btn-danger btn-md'
+div class='container d-flex align-items-center justify-content-center'
+  = link_to 'Add questions', new_survey_question_path(@survey, survey_edit:true), class:'btn btn-success btn-lg'
