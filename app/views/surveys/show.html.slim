@@ -1,3 +1,2 @@
 h1 #{@survey.title}
-- if admin_signed_in? 
-    - if current_admin == @survey.admin
+- if admin_signed_in? and current_admin == @survey.admin
