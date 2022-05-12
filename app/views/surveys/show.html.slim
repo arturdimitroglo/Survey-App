@@ -1,2 +1,3 @@
-h1 #{@survey.title}
-- if admin_signed_in? and current_admin == @survey.admin
+div class='container d-flex align-items-center justify-content-center'
+  h1 #{@survey.title}
+  - if admin_signed_in? and current_admin == @survey.admin
