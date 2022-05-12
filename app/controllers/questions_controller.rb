@@ -3,10 +3,7 @@ class QuestionsController < ApplicationController
 
   def new
     @survey = Survey.find(params[:survey_id])
-    @question = @survey.questions.new
-    if params[:question_type] != nil
-      redirect_to return_url(params[:question_type], params[:survey_id]) 
-    end    
+    @question = @survey.questions.new  
   end
 
   def create
@@ -20,9 +17,6 @@ class QuestionsController < ApplicationController
   end
 
   private
-  def return_url(question_type, survey_id)
-    url_from("surveys/#{survey_id}/questions/new_#{question_type}")
-  end
   def question_params
     params.require(:question).permit(:title, :question_type)
   end
