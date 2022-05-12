@@ -1,24 +1,34 @@
-h1 Surveys
-ul
-  li
-    = link_to 'sign-up', 'admins/sign_up'
-  li
-    = link_to "Sign Out", destroy_admin_session_path, data:{turbo_method: :delete}
-table 
-  thead
-    tr 
-      th Title
-      th Admin
-  - @surveys.each do |survey|
-    tr
-      td
-        = link_to survey.title, survey
-      td
-        = survey.admin.email
-      td
-        - if admin_signed_in? 
-          - if current_admin == survey.admin
-            = link_to 'Edit Survey', edit_survey_path(survey)
-            = link_to 'Delete Survey', survey_path(survey), data:{ turbo_method: :delete, tirbo_confirm:'Are you sure'}
+div class='container d-flex align-items-center justify-content-center'
+  h1 Surveys
+div class='container d-flex align-items-center justify-content-center'
+  - if !admin_signed_in?
+    = link_to 'sign-up', 'admins/sign_up',class:'btn btn-primary'
+  = link_to 'sign-in', 'admins/sign_in',class:'btn btn-success'
+  - if admin_signed_in?
+    = link_to "Sign Out", destroy_admin_session_path, data:{turbo_method: :delete}, class:'btn btn-danger'
 
-= link_to 'Add a new Survey', new_survey_path
+
+br
+div class='container d-flex align-items-center justify-content-center'
+  table class='table table-hover table-bordered'
+    thead
+      tr 
+        th Title
+        th Admin
+        - if admin_signed_in?
+          th Edit
+          th Delete
+    - @surveys.each do |survey|
+      tr
+        td
+          = link_to survey.title, survey
+        td
+          = survey.admin.email
+          - if admin_signed_in? and current_admin == survey.admin
+              td
+                = link_to 'Edit Survey', edit_survey_path(survey), class:'btn btn-primary'
+              td
+                = link_to 'Delete Survey', survey_path(survey), data:{ turbo_method: :delete, tirbo_confirm:'Are you sure'}, class:'btn btn-danger'
+div class='container d-flex align-items-center justify-content-center'
+  - if admin_signed_in?
+    = link_to 'Add a new Survey', new_survey_path, class:'btn btn-success'
