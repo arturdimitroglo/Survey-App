@@ -24,13 +24,13 @@ div class='container d-flex align-items-center justify-content-center'
           = link_to survey.title, survey
         td
           = survey.admin.email
-          
-        td
-          - if admin_signed_in? and current_admin == survey.admin
-            = link_to 'Edit Survey', edit_survey_path(survey), class:'btn btn-primary'
-        td
-          - if admin_signed_in? and current_admin == survey.admin
-            = link_to 'Delete Survey', survey_path(survey), data:{ turbo_method: :delete, tirbo_confirm:'Are you sure'}, class:'btn btn-danger'
+        - if admin_signed_in?
+          td
+            - if current_admin == survey.admin
+                = link_to 'Edit Survey', edit_survey_path(survey), class:'btn btn-primary'
+          td
+            - if current_admin == survey.admin
+                = link_to 'Delete Survey', survey_path(survey), data:{ turbo_method: :delete, tirbo_confirm:'Are you sure'}, class:'btn btn-danger'
 div class='container d-flex align-items-center justify-content-center'
   - if admin_signed_in?
     = link_to 'Add a new Survey', new_survey_path, class:'btn btn-success'
