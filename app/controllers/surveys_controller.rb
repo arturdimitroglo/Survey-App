@@ -24,6 +24,20 @@ class SurveysController < ApplicationController
     end
   end
 
+  def edit
+    @survey = Survey.find(params[:id])
+  end
+
+  def update
+    @survey = Survey.find(params[:id])
+
+    if @survey.update(survey_params)
+      redirect_to @survey
+    else
+      render :edit, status: :unprocessble_entity
+    end
+  end
+
   private
   def survey_params
     params.require(:survey).permit(:title, :description)
