@@ -1,79 +1,74 @@
 - if params[:question_type] == nil
   = form_with method: :get do |form|
-    div
-      = form.label :question_type
-      = form.select :question_type, [['multiple choice','multiple_choice'], ['open-ended', 'open_ended'], ['multiple-answer','multiple_answer']]
-    div
-      = form.submit
+    div class='mb-3'
+      = form.label :question_type, class:'form-label'
+      br/
+      = form.select :question_type, [['multiple choice','multiple_choice'], ['open-ended', 'open_ended'], ['multiple-answer','multiple_answer']],class:'form-select'
+    div class='mb-3'
+      = form.submit 'Submit', class:'btn btn-success'
 
 -elsif params[:question_type] == 'multiple_choice'
     = form_with model: [survey, question] do |form|
-      div
+      div class='mb-3'
         = form.hidden_field :question_type ,value:params[:question_type]
-      div
-        = form.label :title
-        = form.text_field :title
-      div
-        = form.label :choice_1
-        = form.text_field :choice_1
-      div
-        = form.label :choice_2
-        = form.text_field :choice_2
-      div
-        = form.label :choice_3
-        = form.text_field :choice_3
-      div
-        = form.label :choice_4
-        = form.text_field :choice_4
-      div
-        = form.label :choice_5
-        = form.text_field :choice_5
-      div
-        = form.label :choice_6
-        = form.text_field :choice_6
-      div
-        = form.submit
+      div class='mb-3'
+        = form.label :title, class:'form-label'
+        = form.text_area :title, class:'form-control'
+      div class='mb-3'
+        = form.label :choice_1, class:'form-label'
+        = form.text_field :choice_1, class:'form-control'
+      div class='mb-3'
+        = form.label :choice_2, class:'form-label'
+        = form.text_field :choice_2, class:'form-control'
+      div class='mb-3'
+        = form.label :choice_3, class:'form-label'
+        = form.text_field :choice_3, class:'form-control'
+      div class='mb-3'
+        = form.label :choice_4, class:'form-label'
+        = form.text_field :choice_4, class:'form-control'
+      div class='mb-3'
+        = form.label :choice_5, class:'form-label'
+        = form.text_field :choice_5, class:'form-control'
+      div class='mb-3'
+        = form.label :choice_6, class:'form-label'
+        = form.text_field :choice_6, class:'form-control'
+      div class='mb-3'
+        = form.submit 'Submit', class:'btn btn-success' 
 
 -elsif params[:question_type] == 'open_ended'
     = form_with model: [survey, question] do |form|
-      div
+      div class='mb-3'
         = form.hidden_field :question_type ,value:params[:question_type]
-      div
-        = form.label :title
-        = form.text_field :title
-      div
-        = form.label :open_ended_answer
-        = form.text_field :open_ended_answer
-      div
-        = form.submit
+      div class='mb-3'
+        = form.label :title, class:'form-label'
+        = form.text_area :title, class:'form-control'
+      div class='mb-3'
+        = form.submit 'Submit', class:'btn btn-success'
 
 -elsif params[:question_type] == 'multiple_answer'
     = form_with model: [survey, question] do |form|
-      div
+      div class='mb-3'
         = form.hidden_field :question_type ,value:params[:question_type]
-      div
-        = form.label :title
-        = form.text_field :title
-              div
-        = form.label :title
-        = form.text_field :title
-      div
-        = form.label :choice_1
-        = form.text_field :choice_1
-      div
-        = form.label :choice_2
-        = form.text_field :choice_2
-      div
-        = form.label :choice_3
-        = form.text_field :choice_3
-      div
-        = form.label :choice_4
-        = form.text_field :choice_4
-      div
-        = form.label :choice_5
-        = form.text_field :choice_5
-      div
-        = form.label :choice_6
-        = form.text_field :choice_6
-      div
-        = form.submit
+      div class='mb-3'
+        = form.label :title, class:'form-label'
+        = form.text_area :title, class:'form-control'
+      div class='mb-3'
+        = form.label :choice_1, class:'form-label'
+        = form.text_field :choice_1, class:'form-control'
+      div class='mb-3'
+        = form.label :choice_2, class:'form-label'
+        = form.text_field :choice_2, class:'form-control'
+      div class='mb-3'
+        = form.label :choice_3, class:'form-label'
+        = form.text_field :choice_3, class:'form-control'
+      div class='mb-3'
+        = form.label :choice_4, class:'form-label'
+        = form.text_field :choice_4, class:'form-control'
+      div class='mb-3'
+        = form.label :choice_5, class:'form-label'
+        = form.text_field :choice_5, class:'form-control'
+      div class='mb-3'
+        = form.label :choice_6, class:'form-label'
+        = form.text_field :choice_6, class:'form-control'
+      div class='mb-3'
+        = form.submit 'Submit', class:'btn btn-success'
