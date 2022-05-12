@@ -8,3 +8,6 @@ ul
   - @surveys.each do |survey|
     li
       = link_to survey.title, survey
+      = ' ' + survey.admin.email
+
+= link_to 'Add a new Survey', new_survey_path
