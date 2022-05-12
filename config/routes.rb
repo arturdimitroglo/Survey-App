@@ -4,13 +4,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   resources :surveys do 
-    resources :questions do 
-      get 'new_multiple_choice', on: :member
-
-      get 'new_open_ended', on: :member
-
-      get 'new_multiple_answer', on: :collection
-    end
+    resources :questions 
   end
   root "surveys#index"
 end
