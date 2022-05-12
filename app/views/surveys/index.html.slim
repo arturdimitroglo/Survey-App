@@ -4,10 +4,16 @@ ul
     = link_to 'sign-up', 'admins/sign_up'
   li
     = link_to "Sign Out", destroy_admin_session_path, data:{turbo_method: :delete}
-ul 
+table 
+  thead
+    tr 
+      th Title
+      th Admin
   - @surveys.each do |survey|
-    li
-      = link_to survey.title, survey
-      = ' ' + survey.admin.email
+    tr
+      td
+        = link_to survey.title, survey
+      td
+        = survey.admin.email
 
 = link_to 'Add a new Survey', new_survey_path
