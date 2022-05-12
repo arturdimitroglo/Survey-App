@@ -1,6 +1,5 @@
-h1 New question 
+div class='container d-flex align-items-center justify-content-center'
+  h1 New question 
 
-= render 'form', {survey:@survey, question:@question}
-
-- if params[:survey_edit] == 'true' 
-  = link_to 'Return to editing survey', edit_survey_path(@survey)
+div class='container d-flex align-items-center justify-content-center'
+  = render 'form', {survey:@survey, question:@question}
