@@ -1,3 +1,6 @@
-h1 new question 
+h1 New question 
 
 = render 'form', {survey:@survey, question:@question}
+
+- if params[:survey_edit] == 'true' 
+  = link_to 'Return to editing survey', edit_survey_path(@survey)
