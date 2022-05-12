@@ -24,4 +24,4 @@ div class='container d-flex align-items-center justify-content-center'
         td
           = link_to 'Delete question', survey_question_path(@survey, question), data: {turbo_method: :delete, turbo_confirm:'Are you sure?'}, class:'btn btn-danger btn-md'
 div class='container d-flex align-items-center justify-content-center'
-  = link_to 'Add questions', new_survey_question_path(@survey, survey_edit:true), class:'btn btn-success btn-lg'
+  = link_to 'Add questions', new_survey_question_path(@survey), class:'btn btn-success btn-lg'
