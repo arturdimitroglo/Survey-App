@@ -13,5 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+
+td {
+  width:33%  
+}
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
