@@ -32,7 +32,7 @@ class SurveysController < ApplicationController
     @survey = Survey.find(params[:id])
 
     if @survey.update(survey_params)
-      redirect_to @survey
+      redirect_to edit_survey_path(@survey)
     else
       render :edit, status: :unprocessble_entity
     end
