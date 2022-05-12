@@ -1,8 +1,14 @@
-= turbo_frame_tag params[:question_type]
+- if params[:question_type] == nil
   = form_with method: :get do |form|
     div
       = form.label :question_type
       = form.select :question_type, [['multiple choice','multiple_choice'], ['open-ended', 'open_ended'], ['multiple-answer','multiple_answer']]
     div
       = form.submit
-    
+-elsif params[:question_type] == 'multiple_choice'
+    = form_with model: [survey, question] do |form|
+      div
+        = form.label :title
+        = form.text_field :title
+      div
+        = form.submit
