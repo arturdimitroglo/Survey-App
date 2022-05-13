@@ -11,7 +11,7 @@ class QuestionsController < ApplicationController
     @question = @survey.questions.new(question_params)
 
     if @question.save
-      redirect_to new_survey_question_path(@survey)
+      redirect_to edit_survey_path(@survey)
     else
       render :new, status: :unprocessable_entity
     end
