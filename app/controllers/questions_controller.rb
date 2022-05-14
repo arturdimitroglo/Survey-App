@@ -17,6 +17,20 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def edit
+    @question = Question.find(params[:id])
+  end
+
+  def update 
+    @question = Question.find(params[:id])
+
+    if @question.update(question_params)
+      redirect_to @question.survey
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
   def question_params
     params.require(:question).permit(:title, :question_type, :choice_1, :choice_2, :choice_3, :choice_4, :choice_5, :choice_6, :open_ended_answer)
