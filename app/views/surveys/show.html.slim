@@ -1,8 +1,67 @@
 div class='container d-flex align-items-center justify-content-center'
   h1 #{@survey.title}
+
 div class='container d-flex align-items-center justify-content-center'
-  nav aria-label=("Page navigation example") 
-  ul.pagination
+  h2 #{@question.title}
+div class='container d-flex align-items-center justify-content-center'  
+  -if @question.question_type == 'multiple_choice'
+      = form_with model: @answer do |form|
+        div class='mb-3'
+          = form.label :choice_1, class:'form-label'
+          = form.text_field :choice_1, class:'form-control'
+        div class='mb-3'
+          = form.label :choice_2, class:'form-label'
+          = form.text_field :choice_2, class:'form-control'
+        div class='mb-3'
+          = form.label :choice_3, class:'form-label'
+          = form.text_field :choice_3, class:'form-control'
+        div class='mb-3'
+          = form.label :choice_4, class:'form-label'
+          = form.text_field :choice_4, class:'form-control'
+        div class='mb-3'
+          = form.label :choice_5, class:'form-label'
+          = form.text_field :choice_5, class:'form-control'
+        div class='mb-3'
+          = form.label :choice_6, class:'form-label'
+          = form.text_field :choice_6, class:'form-control'
+        div class='mb-3'
+          = form.submit 'Submit', class:'btn btn-success' 
+  -elsif @question.question_type == 'open_ended'
+      = form_with model: @answer  do |form|
+        div class='mb-3'
+          = form.hidden_field :question_type,value:'open_ended'
+        div class='mb-3'
+          = form.submit 'Submit', class:'btn btn-success'
+
+  -elsif @question.question_type == 'multiple_answer'
+      = form_with model: @answer  do |form|
+        div class='mb-3'
+          = form.hidden_field :question_type,value: 'multiple_answer'
+        div class='mb-3'
+          = form.label :choice_1, class:'form-label'
+          = form.text_field :choice_1, class:'form-control'
+        div class='mb-3'
+          = form.label :choice_2, class:'form-label'
+          = form.text_field :choice_2, class:'form-control'
+        div class='mb-3'
+          = form.label :choice_3, class:'form-label'
+          = form.text_field :choice_3, class:'form-control'
+        div class='mb-3'
+          = form.label :choice_4, class:'form-label'
+          = form.text_field :choice_4, class:'form-control'
+        div class='mb-3'
+          = form.label :choice_5, class:'form-label'
+          = form.text_field :choice_5, class:'form-control'
+        div class='mb-3'
+          = form.label :choice_6, class:'form-label'
+          = form.text_field :choice_6, class:'form-control'
+        div class='mb-3'
+          = form.submit 'Submit', class:'btn btn-success'
+      
+
+div class='container d-flex align-items-center justify-content-center'
+  nav
+  ul class='pagination'
     - if @question.previous != nil 
       li.page-item
         = link_to  'Previous',survey_path(@survey, question_id:@question.previous.id), class:'page-link'
