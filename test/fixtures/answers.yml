@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  question: one
+  choice_1: false
+  choice_2: false
+  choice_3: false
+  choice_4: false
+  choice_5: false
+  choice_6: false
+  open_ended: MyText
+
+two:
+  question: two
+  choice_1: false
+  choice_2: false
+  choice_3: false
+  choice_4: false
+  choice_5: false
+  choice_6: false
+  open_ended: MyText
