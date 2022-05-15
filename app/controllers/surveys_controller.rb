@@ -37,6 +37,13 @@ class SurveysController < ApplicationController
       render :edit, status: :unprocessble_entity
     end
   end
+  
+  def destroy
+    @survey = Survey.find(params[:id])
+
+    @survey.destroy
+    redirect_to root_path, status: :see_other
+  end
 
   private
   def survey_params
