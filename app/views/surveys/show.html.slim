@@ -3,8 +3,9 @@ div class='container d-flex align-items-center justify-content-center'
 div class='container d-flex align-items-center justify-content-center'
   nav aria-label=("Page navigation example") 
   ul.pagination
-    li.page-item
-      a.page-link href="#"  Previous
-    li.page-item
-      a.page-link href="#"  Next
-
+    - if @question.previous != nil 
+      li.page-item
+        = link_to  'Previous',survey_path(@survey, question_id:@question.previous.id), class:'page-link'
+    - if @question.next != nil
+      li.page-item
+        = link_to  'Next', survey_path(@survey, question_id:@question.next.id), class:'page-link'
