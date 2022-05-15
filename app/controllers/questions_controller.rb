@@ -25,7 +25,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
 
     if @question.update(question_params)
-      redirect_to @question.survey
+      redirect_to edit_survey_path(@question.survey)
     else
       render :edit, status: :unprocessable_entity
     end
