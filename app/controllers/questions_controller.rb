@@ -30,6 +30,13 @@ class QuestionsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
+  
+  def destroy
+    @question = Question.find(params[:question_id])  
+
+    @question.destroy
+    redirect_to edit_survey_path(@question.survey), status: :see_other
+  end
 
   private
   def question_params
