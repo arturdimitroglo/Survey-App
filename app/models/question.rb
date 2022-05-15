@@ -1,5 +1,6 @@
 class Question < ApplicationRecord
   belongs_to :survey
+  has_many :answers
   
    def next
     Question.where("id > ?", id).first
