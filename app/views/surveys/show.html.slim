@@ -2,10 +2,12 @@ div class='container d-flex align-items-center justify-content-center'
   h1 #{@survey.title}
 
 div class='container d-flex align-items-center justify-content-center'
-  h2 #{@question.title}
+  h2 Question: #{@question.title}
 div class='container d-flex align-items-center justify-content-center'  
   -if @question.question_type == 'multiple_choice'
       = form_with model: @answer do |form|
+        div class='mb-3'
+          = form.hidden_field :question_id, value:@question.id
         div class='mb-3'
           = form.label :choice_1, class:'form-label'
           = form.text_field :choice_1, class:'form-control'
@@ -29,12 +31,16 @@ div class='container d-flex align-items-center justify-content-center'
   -elsif @question.question_type == 'open_ended'
       = form_with model: @answer  do |form|
         div class='mb-3'
+          = form.hidden_field :question_id, value:@question.id
+        div class='mb-3'
           = form.hidden_field :question_type,value:'open_ended'
         div class='mb-3'
           = form.submit 'Submit', class:'btn btn-success'
 
   -elsif @question.question_type == 'multiple_answer'
       = form_with model: @answer  do |form|
+        div class='mb-3'
+          = form.hidden_field :question_id, value:@question.id
         div class='mb-3'
           = form.hidden_field :question_type,value: 'multiple_answer'
         div class='mb-3'
