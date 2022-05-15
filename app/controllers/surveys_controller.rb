@@ -9,8 +9,10 @@ class SurveysController < ApplicationController
     @survey = Survey.find(params[:id])
     if params[:question_id] == nil
       @question = Question.first
+      @answer = @question.answers.new()
     else
       @question = Question.find(params[:question_id])
+      @answer = @question.answers.new()
     end
   end
 
