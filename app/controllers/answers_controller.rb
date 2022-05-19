@@ -1,14 +1,18 @@
 class AnswersController < ApplicationController
   def create
     @answer = Answer.new(answer_params)
-    if answer.save
-      redirect_to @answer.question
-    else
+    last_question = Question.where(survey_id:@answer.question.survey.id).order(:id).last
+    if @answer.save
+      if @answer.question_id != last_question.id
+        redirect_to survey_path(@answer.question.survey, question_id:@answer.question_id + 1)
+      else
+        redirect_to root_path
+      end
     end
   end
 
   private
   def answer_params
-    params.require(:answer).permit:(question_id,:choice_1, :choice_2, :choice_3, :choice_4, :choice_5, :choice_6, :open_ended_answer)
+    params.require(:answer).permit(:question_id,:choice_1, :choice_2, :choice_3, :choice_4, :choice_5, :choice_6, :open_ended_answer)
   end
 end
