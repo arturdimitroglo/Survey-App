@@ -8,7 +8,7 @@ class SurveysController < ApplicationController
   def show
     @survey = Survey.find(params[:id])
     if params[:question_id] == nil
-      @question = Question.first
+      @question = @survey.questions.first
       @answer = @question.answers.new()
     else
       @question = Question.find(params[:question_id])
