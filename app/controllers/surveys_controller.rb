@@ -27,9 +27,11 @@ class SurveysController < ApplicationController
     @survey = admin.surveys.new(survey_params)
 
     if @survey.save
-      redirect_to @survey
+      redirect_to edit_survey_path(@survey)
+      flash.notice = 'Created survey'
     else
       render :new, status: :unprocessble_entity
+      flash.alert = 'Failed to create survey'
     end
   end
 
