@@ -1,86 +1,91 @@
 div class='container d-flex align-items-center justify-content-center'
   h1 #{@survey.title}
+- if @question != nil
+  div class='container d-flex align-items-center justify-content-center'
+    h2 Question: #{@question.title}
+  div class='container d-flex align-items-center justify-content-center'  
+    -if @question.question_type == 'multiple_choice'
+        = form_with model: @answer do |form|
+          div class='mb-3'
+            = form.hidden_field :question_id, value:@question.id
+          div class='form-check mb-3'
+            = form.radio_button :choice_1, @answer.question.choice_1, class:'form-check-input'
+            = form.label :choice_1, class:'form-check-label'
+          div class='form-check mb-3'
+            = form.radio_button :choice_2, @answer.question.choice_2, class:'form-check-input'
+            = form.label :choice_2, class:'form-check-label'
+          div class='form-check mb-3'
+            = form.radio_button :choice_3, @answer.question.choice_3, class:'form-check-input'
+            = form.label :choice_3, class:'form-check-label'
+          div class='form-check mb-3'
+            = form.radio_button :choice_4, @answer.question.choice_4, class:'form-check-input'
+            = form.label :choice_4, class:'form-check-label'
+          div class='form-check mb-3'
+            = form.radio_button :choice_5, @answer.question.choice_5, class:'form-check-input'
+            = form.label :choice_5, class:'form-check-label'
+          div class='form-check mb-3'
+            = form.radio_button :choice_6, @answer.question.choice_6, class:'form-check-input'
+            = form.label :choice_6, class:'form-check-label'
+          nav
+          ul class='pagination'
+            / - if @question.previous != nil 
+            /   li.page-item
+            /     = link_to  'Previous',edit_answer_path(@answer), class:'page-link'
+            - if @question.next != nil
+                li.page-item
+                  = form.submit 'Next', class:'page-link'
 
-div class='container d-flex align-items-center justify-content-center'
-  h2 Question: #{@question.title}
-div class='container d-flex align-items-center justify-content-center'  
-  -if @question.question_type == 'multiple_choice'
-      = form_with model: @answer do |form|
-        div class='mb-3'
-          = form.hidden_field :question_id, value:@question.id
-        div class='form-check mb-3'
-          = form.radio_button :choice_1, @answer.question.choice_1, class:'form-check-input'
-          = form.label :choice_1, class:'form-check-label'
-        div class='form-check mb-3'
-          = form.radio_button :choice_2, @answer.question.choice_2, class:'form-check-input'
-          = form.label :choice_2, class:'form-check-label'
-        div class='form-check mb-3'
-          = form.radio_button :choice_3, @answer.question.choice_3, class:'form-check-input'
-          = form.label :choice_3, class:'form-check-label'
-        div class='form-check mb-3'
-          = form.radio_button :choice_4, @answer.question.choice_4, class:'form-check-input'
-          = form.label :choice_4, class:'form-check-label'
-        div class='form-check mb-3'
-          = form.radio_button :choice_5, @answer.question.choice_5, class:'form-check-input'
-          = form.label :choice_5, class:'form-check-label'
-        div class='form-check mb-3'
-          = form.radio_button :choice_6, @answer.question.choice_6, class:'form-check-input'
-          = form.label :choice_6, class:'form-check-label'
-        nav
-        ul class='pagination'
-          / - if @question.previous != nil 
-          /   li.page-item
-          /     = link_to  'Previous',edit_answer_path(@answer), class:'page-link'
-          - if @question.next != nil
-              li.page-item
-                = form.submit 'Next', class:'page-link'
+    -elsif @question.question_type == 'open_ended'
+        = form_with model: @answer  do |form|
+          div class='mb-3'
+            = form.hidden_field :question_id, value:@question.id
+          div class='mb-3'
+            = form.hidden_field :question_type,value:'open_ended'
+          nav
+          ul class='pagination'
+            / - if @question.previous != nil 
+            /   li.page-item
+            /     = link_to  'Previous',edit_answer_path(@answer), class:'page-link'
+            - if @question.next != nil
+                li.page-item
+                  = form.submit 'Next', class:'page-link'
+          
+          
 
-  -elsif @question.question_type == 'open_ended'
-      = form_with model: @answer  do |form|
-        div class='mb-3'
-          = form.hidden_field :question_id, value:@question.id
-        div class='mb-3'
-          = form.hidden_field :question_type,value:'open_ended'
-        nav
-        ul class='pagination'
-          / - if @question.previous != nil 
-          /   li.page-item
-          /     = link_to  'Previous',edit_answer_path(@answer), class:'page-link'
-          - if @question.next != nil
-              li.page-item
-                = form.submit 'Next', class:'page-link'
-        
-        
-
-  -elsif @question.question_type == 'multiple_answer'
-      = form_with model: @answer  do |form|
-        div class='mb-3'
-          = form.hidden_field :question_id, value:@question.id
-        div class='mb-3'
-          = form.hidden_field :question_type,value: 'multiple_answer'
-        div class='mb-3'
-          = form.label :choice_1, class:'form-label'
-          = form.text_field :choice_1, class:'form-control'
-        div class='mb-3'
-          = form.label :choice_2, class:'form-label'
-          = form.text_field :choice_2, class:'form-control'
-        div class='mb-3'
-          = form.label :choice_3, class:'form-label'
-          = form.text_field :choice_3, class:'form-control'
-        div class='mb-3'
-          = form.label :choice_4, class:'form-label'
-          = form.text_field :choice_4, class:'form-control'
-        div class='mb-3'
-          = form.label :choice_5, class:'form-label'
-          = form.text_field :choice_5, class:'form-control'
-        div class='mb-3'
-          = form.label :choice_6, class:'form-label'
-          = form.text_field :choice_6, class:'form-control'
-        nav
-        ul class='pagination'
-          / - if @question.previous != nil 
-          /   li.page-item
-          /     = link_to  'Previous',edit_answer_path(@answer), class:'page-link'
-          - if @question.next != nil
-              li.page-item
-                = form.submit 'Next', class:'page-link'
+    -elsif @question.question_type == 'multiple_answer'
+        = form_with model: @answer  do |form|
+          div class='mb-3'
+            = form.hidden_field :question_id, value:@question.id
+          div class='mb-3'
+            = form.hidden_field :question_type,value: 'multiple_answer'
+          div class='mb-3'
+            = form.label :choice_1, class:'form-label'
+            = form.text_field :choice_1, class:'form-control'
+          div class='mb-3'
+            = form.label :choice_2, class:'form-label'
+            = form.text_field :choice_2, class:'form-control'
+          div class='mb-3'
+            = form.label :choice_3, class:'form-label'
+            = form.text_field :choice_3, class:'form-control'
+          div class='mb-3'
+            = form.label :choice_4, class:'form-label'
+            = form.text_field :choice_4, class:'form-control'
+          div class='mb-3'
+            = form.label :choice_5, class:'form-label'
+            = form.text_field :choice_5, class:'form-control'
+          div class='mb-3'
+            = form.label :choice_6, class:'form-label'
+            = form.text_field :choice_6, class:'form-control'
+          nav
+          ul class='pagination'
+            / - if @question.previous != nil 
+            /   li.page-item
+            /     = link_to  'Previous',edit_answer_path(@answer), class:'page-link'
+            - if @question.next != nil
+                li.page-item
+                  = form.submit 'Next', class:'page-link'
+- else 
+  div class='container d-flex align-items-center justify-content-center'
+    div class='alert alert-primary'
+      h4 class='alert heading' There are no questiosn yet
+      p please come back latter when there are question

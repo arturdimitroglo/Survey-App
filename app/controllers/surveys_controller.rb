@@ -7,12 +7,14 @@ class SurveysController < ApplicationController
   
   def show
     @survey = Survey.find(params[:id])
-    if params[:question_id] == nil
+    if params[:question_id] == nil and @survey.questions.first != nil
       @question = @survey.questions.first
       @answer = @question.answers.new()
-    else
+    elsif params[:question_id] != nil and @survey.questions.first != nil
       @question = Question.find(params[:question_id])
       @answer = @question.answers.new()
+    else
+      @question = nil
     end
   end
 
