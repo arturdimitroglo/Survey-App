@@ -44,8 +44,10 @@ class SurveysController < ApplicationController
 
     if @survey.update(survey_params)
       redirect_to edit_survey_path(@survey)
+      flash.notice = 'Updated survey'
     else
       render :edit, status: :unprocessble_entity
+      flash.alert = 'Failed to update survey' 
     end
   end
 
