@@ -1,6 +1,6 @@
 class Question < ApplicationRecord
   belongs_to :survey
-  has_many :answers
+  has_many :answers, dependent: :destroy
   
    def next
     Question.where("id > ?", id).first
