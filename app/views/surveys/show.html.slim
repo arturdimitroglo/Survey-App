@@ -40,15 +40,16 @@ div class='container d-flex align-items-center justify-content-center'
           div class='mb-3'
             = form.hidden_field :question_id, value:@question.id
           div class='mb-3'
-            = form.hidden_field :question_type,value:'open_ended'
+            = form.label @answer.question.title, class:'form-label'
+            = form.text_area :open_ended_answer, class:'form-control'
           nav
           ul class='pagination'
             / - if @question.previous != nil 
             /   li.page-item
             /     = link_to  'Previous',edit_answer_path(@answer), class:'page-link'
-            - if @question.next != nil
-                li.page-item
-                  = form.submit 'Next', class:'page-link'
+
+            li.page-item
+              = form.submit 'Next', class:'page-link'
           
           
 
