@@ -10,27 +10,37 @@ div class='container d-flex align-items-center justify-content-center'
 
 br
 div class='container d-flex align-items-center justify-content-center'
-  table class='table table-hover table-bordered'
-    thead
-      tr 
-        th Title
-        th Admin
-        - if admin_signed_in?
-          th Edit
-          th Delete
-    - @surveys.each do |survey|
-      tr
-        td
-          = link_to survey.title, survey
-        td
-          = survey.admin.email
-        - if admin_signed_in?
+  - if !@surveys.empty?
+    table class='table table-hover table-bordered'
+      thead
+        tr 
+          th Title
+          th Admin
+          - if admin_signed_in?
+            th Edit
+            th Delete
+      - @surveys.each do |survey|
+        tr
           td
-            - if current_admin == survey.admin
-                = link_to 'Edit Survey', edit_survey_path(survey), class:'btn btn-primary'
+            = link_to survey.title, survey
           td
-            - if current_admin == survey.admin
-                = link_to 'Delete Survey', survey_path(survey, survey_id:survey.id), data:{ turbo_method: :delete, tirbo_confirm:'Are you sure'}, class:'btn btn-danger'
+            = survey.admin.email
+          - if admin_signed_in?
+            td
+              - if current_admin == survey.admin
+                  = link_to 'Edit Survey', edit_survey_path(survey), class:'btn btn-primary'
+            td
+              - if current_admin == survey.admin
+                  = link_to 'Delete Survey', survey_path(survey, survey_id:survey.id), data:{ turbo_method: :delete, tirbo_confirm:'Are you sure'}, class:'btn btn-danger'
+  -else
+    div class='container d-flex align-items-center justify-content-center'
+      div class='alert alert-primary'
+        h4 class='alert heading' There are no surveys
+        - if !admin_signed_in?
+          p class='mb-3' please come back latter when there are more questions
+        -else
+          p class='mb-3'please add surveys
+
 div class='container d-flex align-items-center justify-content-center'
   - if admin_signed_in?
     = link_to 'Add a new Survey', new_survey_path, class:'btn btn-success'
