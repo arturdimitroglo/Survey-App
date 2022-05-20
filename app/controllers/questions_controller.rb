@@ -12,8 +12,10 @@ class QuestionsController < ApplicationController
 
     if @question.save
       redirect_to edit_survey_path(@survey)
+      flash.notice = 'Added question'
     else
       render :new, status: :unprocessable_entity
+      flash.alert = 'Failed to add question'
     end
   end
 
