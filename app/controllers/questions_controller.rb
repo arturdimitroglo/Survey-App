@@ -28,8 +28,10 @@ class QuestionsController < ApplicationController
 
     if @question.update(question_params)
       redirect_to edit_survey_path(@question.survey)
+      flash.notice = 'Updated question'
     else
       render :edit, status: :unprocessable_entity
+      flash.alert = 'Failed to update question'
     end
   end
   
