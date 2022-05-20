@@ -5,9 +5,14 @@ class AnswersController < ApplicationController
     if @answer.save
       if @answer.question_id != last_question.id
         redirect_to survey_path(@answer.question.survey, question_id:@answer.question_id + 1)
+        flash.notice = 'Answer succesfully recorded'
       else
         redirect_to root_path
+        flash.notice = 'Answer succesfully recorded'
       end
+    else
+      render :new, status: :unprocessable_entity
+      flash.alert = 'Answer could not be recorded'
     end
   end
 
