@@ -11,6 +11,21 @@
   </head>
 
   <body>
+    <% if flash[:notice] %>
+      <div class="container d-flex align-items-center justify-content-center">
+        <div class='alert alert-primary'>
+        <%= flash[:notice] %>
+        </div>
+      </div>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <div class="container d-flex align-items-center justify-content-center">
+        <div class='alert alert-danger'>
+          <%= flash[:alert] %>
+        </div>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
