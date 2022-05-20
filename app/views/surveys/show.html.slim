@@ -10,22 +10,22 @@ div class='container d-flex align-items-center justify-content-center'
             = form.hidden_field :question_id, value:@question.id
           div class='form-check mb-3'
             = form.radio_button :choice_1, @answer.question.choice_1, class:'form-check-input'
-            = form.label :choice_1, class:'form-check-label'
+            = form.label @answer.question.choice_1, class:'form-check-label'
           div class='form-check mb-3'
             = form.radio_button :choice_2, @answer.question.choice_2, class:'form-check-input'
-            = form.label :choice_2, class:'form-check-label'
+            = form.label @answer.question.choice_2, class:'form-check-label'
           div class='form-check mb-3'
             = form.radio_button :choice_3, @answer.question.choice_3, class:'form-check-input'
-            = form.label :choice_3, class:'form-check-label'
+            = form.label @answer.question.choice_3, class:'form-check-label'
           div class='form-check mb-3'
             = form.radio_button :choice_4, @answer.question.choice_4, class:'form-check-input'
-            = form.label :choice_4, class:'form-check-label'
+            = form.label @answer.question.choice_4, class:'form-check-label'
           div class='form-check mb-3'
             = form.radio_button :choice_5, @answer.question.choice_5, class:'form-check-input'
-            = form.label :choice_5, class:'form-check-label'
+            = form.label @answer.question.choice_5, class:'form-check-label'
           div class='form-check mb-3'
             = form.radio_button :choice_6, @answer.question.choice_6, class:'form-check-input'
-            = form.label :choice_6, class:'form-check-label'
+            = form.label @answer.question.choice_6, class:'form-check-label'
           nav
           ul class='pagination'
             / - if @question.previous != nil 
@@ -79,9 +79,9 @@ div class='container d-flex align-items-center justify-content-center'
             / - if @question.previous != nil 
             /   li.page-item
             /     = link_to  'Previous',edit_answer_path(@answer), class:'page-link'
-            - if @question.next != nil
-                li.page-item
-                  = form.submit 'Next', class:'page-link'
+
+            li.page-item
+              = form.submit 'Next', class:'page-link'
 - else 
   div class='container d-flex align-items-center justify-content-center'
     div class='alert alert-primary'
