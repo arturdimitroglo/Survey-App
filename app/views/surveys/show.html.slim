@@ -8,33 +8,32 @@ div class='container d-flex align-items-center justify-content-center'
       = form_with model: @answer do |form|
         div class='mb-3'
           = form.hidden_field :question_id, value:@question.id
-        div class='mb-3'
-          = form.label :choice_1, class:'form-label'
-          = form.text_field :choice_1, class:'form-control'
-        div class='mb-3'
-          = form.label :choice_2, class:'form-label'
-          = form.text_field :choice_2, class:'form-control'
-        div class='mb-3'
-          = form.label :choice_3, class:'form-label'
-          = form.text_field :choice_3, class:'form-control'
-        div class='mb-3'
-          = form.label :choice_4, class:'form-label'
-          = form.text_field :choice_4, class:'form-control'
-        div class='mb-3'
-          = form.label :choice_5, class:'form-label'
-          = form.text_field :choice_5, class:'form-control'
-        div class='mb-3'
-          = form.label :choice_6, class:'form-label'
-          = form.text_field :choice_6, class:'form-control'
+        div class='form-check mb-3'
+          = form.radio_button :choice_1, @answer.question.choice_1, class:'form-check-input'
+          = form.label :choice_1, class:'form-check-label'
+        div class='form-check mb-3'
+          = form.radio_button :choice_2, @answer.question.choice_2, class:'form-check-input'
+          = form.label :choice_2, class:'form-check-label'
+        div class='form-check mb-3'
+          = form.radio_button :choice_3, @answer.question.choice_3, class:'form-check-input'
+          = form.label :choice_3, class:'form-check-label'
+        div class='form-check mb-3'
+          = form.radio_button :choice_4, @answer.question.choice_4, class:'form-check-input'
+          = form.label :choice_4, class:'form-check-label'
+        div class='form-check mb-3'
+          = form.radio_button :choice_5, @answer.question.choice_5, class:'form-check-input'
+          = form.label :choice_5, class:'form-check-label'
+        div class='form-check mb-3'
+          = form.radio_button :choice_6, @answer.question.choice_6, class:'form-check-input'
+          = form.label :choice_6, class:'form-check-label'
         nav
         ul class='pagination'
           / - if @question.previous != nil 
-          /     li.page-item
-          /       = link_to  'Previous',survey_path(@survey, question_id:@question.previous.id), class:'page-link'
+          /   li.page-item
+          /     = link_to  'Previous',edit_answer_path(@answer), class:'page-link'
           - if @question.next != nil
               li.page-item
                 = form.submit 'Next', class:'page-link'
-                / = link_to  'Next', survey_path(@survey, question_id:@question.next.id), class:'page-link'
 
   -elsif @question.question_type == 'open_ended'
       = form_with model: @answer  do |form|
@@ -45,12 +44,11 @@ div class='container d-flex align-items-center justify-content-center'
         nav
         ul class='pagination'
           / - if @question.previous != nil 
-          /     li.page-item
-          /       = link_to  'Previous',survey_path(@survey, question_id:@question.previous.id), class:'page-link'
+          /   li.page-item
+          /     = link_to  'Previous',edit_answer_path(@answer), class:'page-link'
           - if @question.next != nil
               li.page-item
                 = form.submit 'Next', class:'page-link'
-                / = link_to  'Next', survey_path(@survey, question_id:@question.next.id), class:'page-link'
         
         
 
@@ -81,9 +79,8 @@ div class='container d-flex align-items-center justify-content-center'
         nav
         ul class='pagination'
           / - if @question.previous != nil 
-          /     li.page-item
-          /       = link_to  'Previous',survey_path(@survey, question_id:@question.previous.id), class:'page-link'
+          /   li.page-item
+          /     = link_to  'Previous',edit_answer_path(@answer), class:'page-link'
           - if @question.next != nil
               li.page-item
                 = form.submit 'Next', class:'page-link'
-                / = link_to  'Next', survey_path(@survey, question_id:@question.next.id), class:'page-link'
