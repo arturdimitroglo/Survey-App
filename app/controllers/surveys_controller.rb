@@ -30,7 +30,7 @@ class SurveysController < ApplicationController
       redirect_to edit_survey_path(@survey)
       flash.notice = 'Created survey'
     else
-      render :new, status: :unprocessble_entity
+      render :new, status: :unprocessable_entity
       flash.alert = 'Failed to create survey'
     end
   end
@@ -46,7 +46,7 @@ class SurveysController < ApplicationController
       redirect_to edit_survey_path(@survey)
       flash.notice = 'Updated survey'
     else
-      render :edit, status: :unprocessble_entity
+      render :edit, status: :unprocessable_entity
       flash.alert = 'Failed to update survey' 
     end
   end
