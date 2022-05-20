@@ -34,6 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_15_105204) do
     t.boolean "choice_4"
     t.boolean "choice_5"
     t.boolean "choice_6"
+    t.string "multiple_answer_choice"
     t.text "open_ended_answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

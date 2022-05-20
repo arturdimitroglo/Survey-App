@@ -8,6 +8,7 @@ class CreateAnswers < ActiveRecord::Migration[7.0]
       t.boolean :choice_4
       t.boolean :choice_5
       t.boolean :choice_6
+      t.string :multiple_answer_choice
       t.text :open_ended_answer
 
       t.timestamps
