@@ -51,8 +51,6 @@ div class='container d-flex align-items-center justify-content-center'
             li.page-item
               = form.submit 'Next', class:'page-link'
           
-          
-
     -elsif @question.question_type == 'multiple_answer'
         = form_with model: @answer  do |form|
           div class='mb-3'
