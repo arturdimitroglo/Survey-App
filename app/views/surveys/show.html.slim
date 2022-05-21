@@ -34,9 +34,6 @@ div class='container d-flex align-items-center justify-content-center'
               = form.label @answer.question.choice_6, class:'form-check-label'
           nav
           ul class='pagination'
-            / - if @question.previous != nil 
-            /   li.page-item
-            /     = link_to  'Previous',edit_answer_path(@answer), class:'page-link'
             - if @question.next != nil
               li.page-item
                 = form.submit 'Next', class:'page-link'
@@ -53,12 +50,12 @@ div class='container d-flex align-items-center justify-content-center'
             = form.text_area :open_ended_answer, class:'form-control'
           nav
           ul class='pagination'
-            / - if @question.previous != nil 
-            /   li.page-item
-            /     = link_to  'Previous',edit_answer_path(@answer), class:'page-link'
-
-            li.page-item
-              = form.submit 'Next', class:'page-link'
+            - if @question.next != nil
+              li.page-item
+                = form.submit 'Next', class:'page-link'
+            - elsif @question.next == nil
+                li.page-item
+                      = form.submit 'Submit', class:'page-link' 
           
     -elsif @question.question_type == 'multiple_answer'
         = form_with model: @answer  do |form|
@@ -90,18 +87,14 @@ div class='container d-flex align-items-center justify-content-center'
               = form.label @answer.question.choice_6, class:'form-check-label'
           nav
           ul class='pagination'
-            / - if @question.previous != nil 
-            /   li.page-item
-            /     = link_to  'Previous',edit_answer_path(@answer), class:'page-link'
-
             - if @question.next != nil
               li.page-item
                 = form.submit 'Next', class:'page-link'
             - elsif @question.next == nil
-                li.page-item
-                      = form.submit 'Submit', class:'page-link' 
+              li.page-item
+                = form.submit 'Submit', class:'page-link' 
 - else 
   div class='container d-flex align-items-center justify-content-center'
     div class='alert alert-primary'
-      h4 class='alert heading' There are no questiosn yet
-      p please come back latter when there are question
+      h4 class='alert heading' There are no questions yet
+      p please come back latter when there are questions
