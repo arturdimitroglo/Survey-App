@@ -1,11 +1,10 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a survey app I built with authetication functionality.This app can be set up on a linux ditrabution of your choice or mac osx
 
-Things you may want to cover:
 
-* Ruby version
+### Ruby version
+  `ruby 2.7.2`
 
 * System dependencies
 
