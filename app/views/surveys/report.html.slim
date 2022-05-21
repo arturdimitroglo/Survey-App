@@ -45,7 +45,14 @@ div class='container d-flex align-items-center justify-content-center'
                 = question.choice_5 + ': ' + question.answers.where(choice_5:true).count().to_s + ' responses'
           - if question.choice_6 != ''    
               li
-                = question.choice_6 + ': ' + question.answers.where(choice_6:true).count().to_s + ' responses'  
+                = question.choice_6 + ': ' + question.answers.where(choice_6:true).count().to_s + ' responses' 
+    - elsif question.question_type == 'open_ended' 
+      ul
+        -question.answers.each do |answer|
+          li
+            p answer        
+
+
 
                   
             
