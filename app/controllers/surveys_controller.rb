@@ -58,6 +58,10 @@ class SurveysController < ApplicationController
     redirect_to root_path, status: :see_other
   end
 
+  def report
+    @survey = Survey.find(params[:id])
+  end
+
   private
   def survey_params
     params.require(:survey).permit(:title, :description)
