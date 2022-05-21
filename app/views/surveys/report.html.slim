@@ -1,0 +1,15 @@
+div class='container d-flex align-items-center justify-content-center'
+  h1 #{@survey.title}
+
+
+- @survey.questions.each do |question|
+  div class='container d-flex align-items-center justify-content-center'
+    h2 #{question.title}
+  div class='container d-flex align-items-center justify-content-center'
+    - if question.question_type == 'multiple_choice'
+      ul
+        - if question.choice_1 != nil    
+            li
+              = question.answers.where(multiple_answer_choice:question.choice_1).count()
+        
+
