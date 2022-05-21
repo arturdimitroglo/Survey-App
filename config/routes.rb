@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   resources :surveys do 
     resources :questions 
+    get 'report', on: :member
   end
   resources :answers
   root "surveys#index"
