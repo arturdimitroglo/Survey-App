@@ -18,6 +18,6 @@ class AnswersController < ApplicationController
 
   private
   def answer_params
-    params.require(:answer).permit(:question_id,:choice_1, :choice_2, :choice_3, :choice_4, :choice_5, :choice_6, :open_ended_answer)
+    params.require(:answer).permit(:question_id,:choice_1, :choice_2, :choice_3, :choice_4, :choice_5, :choice_6, :open_ended_answer, :multiple_answer_choice)
   end
 end
