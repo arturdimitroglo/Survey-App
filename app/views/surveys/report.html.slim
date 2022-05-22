@@ -1,56 +1,62 @@
-div class='container d-flex align-items-center justify-content-center'
-  h1 Survey:#{@survey.title}
+- if current_admin == @survey.admin
+
+  div class='container d-flex align-items-center justify-content-center'
+    h1 Survey:#{@survey.title}
 
 
-- @survey.questions.each do |question|
-  div class='container d-flex align-items-center justify-content-center'
-    h2 Question:#{question.title}
-  div class='container d-flex align-items-center justify-content-center'
-    - if question.question_type == 'multiple_choice'
+  - @survey.questions.each do |question|
+    div class='container d-flex align-items-center justify-content-center'
+      h2 Question:#{question.title}
+    div class='container d-flex align-items-center justify-content-center'
+      - if question.question_type == 'multiple_choice'
+          ul
+            - if question.choice_1 != ''    
+                li class='list-group-item'
+                  = question.choice_1 + ': ' + question.answers.where(multiple_answer_choice:question.choice_1).count().to_s + ' responses'
+            - if question.choice_2 != ''
+                li class='list-group-item'
+                  = question.choice_2 + ': ' + question.answers.where(multiple_answer_choice:question.choice_2).count().to_s + ' responses'
+            - if question.choice_3 != ''
+                li class='list-group-item'
+                  = question.choice_3 + ': ' + question.answers.where(multiple_answer_choice:question.choice_3).count().to_s + ' responses'
+            - if question.choice_4 != ''
+                li class='list-group-item'
+                  = question.choice_4 + ': ' + question.answers.where(multiple_answer_choice:question.choice_4).count().to_s + ' responses'
+            - if question.choice_5 != ''    
+                li class='list-group-item'
+                  = question.choice_5 + ': ' + question.answers.where(multiple_answer_choice:question.choice_5).count().to_s + ' responses'
+            - if question.choice_6 != ''    
+                li class='list-group-item'
+                  = question.choice_6 + ': ' + question.answers.where(multiple_answer_choice:question.choice_6).count().to_s + ' responses'
+      - elsif question.question_type == 'multiple_answer'
+          ul
+            - if question.choice_1 != ''    
+                li class='list-group-item'
+                  = question.choice_1 + ': ' + question.answers.where(choice_1:true).count().to_s + ' responses'
+            - if question.choice_2 != ''
+                li class='list-group-item'
+                  = question.choice_2 + ': ' + question.answers.where(choice_2:true).count().to_s + ' responses'
+            - if question.choice_3 != ''
+                li class='list-group-item'
+                  = question.choice_3 + ': ' + question.answers.where(choice_3:true).count().to_s + ' responses'
+            - if question.choice_4 != ''
+                li class='list-group-item'
+                  = question.choice_4 + ': ' + question.answers.where(choice_4:true).count().to_s + ' responses'
+            - if question.choice_5 != ''    
+                li class='list-group-item'
+                  = question.choice_5 + ': ' + question.answers.where(choice_5:true).count().to_s + ' responses'
+            - if question.choice_6 != ''    
+                li class='list-group-item'
+                  = question.choice_6 + ': ' + question.answers.where(choice_6:true).count().to_s + ' responses' 
+      - elsif question.question_type == 'open_ended' 
         ul
-          - if question.choice_1 != ''    
-              li class='list-group-item'
-                = question.choice_1 + ': ' + question.answers.where(multiple_answer_choice:question.choice_1).count().to_s + ' responses'
-          - if question.choice_2 != ''
-              li class='list-group-item'
-                = question.choice_2 + ': ' + question.answers.where(multiple_answer_choice:question.choice_2).count().to_s + ' responses'
-          - if question.choice_3 != ''
-              li class='list-group-item'
-                = question.choice_3 + ': ' + question.answers.where(multiple_answer_choice:question.choice_3).count().to_s + ' responses'
-          - if question.choice_4 != ''
-              li class='list-group-item'
-                = question.choice_4 + ': ' + question.answers.where(multiple_answer_choice:question.choice_4).count().to_s + ' responses'
-          - if question.choice_5 != ''    
-              li class='list-group-item'
-                = question.choice_5 + ': ' + question.answers.where(multiple_answer_choice:question.choice_5).count().to_s + ' responses'
-          - if question.choice_6 != ''    
-              li class='list-group-item'
-                = question.choice_6 + ': ' + question.answers.where(multiple_answer_choice:question.choice_6).count().to_s + ' responses'
-    - elsif question.question_type == 'multiple_answer'
-        ul
-          - if question.choice_1 != ''    
-              li class='list-group-item'
-                = question.choice_1 + ': ' + question.answers.where(choice_1:true).count().to_s + ' responses'
-          - if question.choice_2 != ''
-              li class='list-group-item'
-                = question.choice_2 + ': ' + question.answers.where(choice_2:true).count().to_s + ' responses'
-          - if question.choice_3 != ''
-              li class='list-group-item'
-                = question.choice_3 + ': ' + question.answers.where(choice_3:true).count().to_s + ' responses'
-          - if question.choice_4 != ''
-              li class='list-group-item'
-                = question.choice_4 + ': ' + question.answers.where(choice_4:true).count().to_s + ' responses'
-          - if question.choice_5 != ''    
-              li class='list-group-item'
-                = question.choice_5 + ': ' + question.answers.where(choice_5:true).count().to_s + ' responses'
-          - if question.choice_6 != ''    
-              li class='list-group-item'
-                = question.choice_6 + ': ' + question.answers.where(choice_6:true).count().to_s + ' responses' 
-    - elsif question.question_type == 'open_ended' 
-      ul
-        -question.answers.each do |answer|
-          li class='list-group-item'
-            p #{answer.open_ended_answer}        
+          -question.answers.each do |answer|
+            li class='list-group-item'
+              p #{answer.open_ended_answer}        
+-else
+    div class='container d-flex align-items-center justify-content-center'
+      div class='alert alert-danger'
+        h4 class='alert heading' You donyt have access to this report
 
 
 
