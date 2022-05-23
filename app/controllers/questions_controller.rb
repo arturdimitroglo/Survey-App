@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
-  before_action :authenticate_admin!, except: %i[index show]
+  before_action :authenticate_admin!
+  before_action :set_question, except: %i[new create destroy]
 
   def new
     @survey = Survey.find(params[:survey_id])
@@ -19,13 +20,7 @@ class QuestionsController < ApplicationController
     end
   end
 
-  def edit
-    @question = Question.find(params[:id])
-  end
-
   def update 
-    @question = Question.find(params[:id])
-
     if @question.update(question_params)
       redirect_to edit_survey_path(@question.survey)
       flash.notice = 'Updated question'
@@ -43,6 +38,10 @@ class QuestionsController < ApplicationController
   end
 
   private
+  def set_question
+    @question = Question.find(params[:id])
+  end
+
   def question_params
     params.require(:question).permit(:title, :question_type, :choice_1, :choice_2, :choice_3, :choice_4, :choice_5, :choice_6, :open_ended_answer, :multiple_answer_choice)
   end
