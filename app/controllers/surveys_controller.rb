@@ -1,12 +1,12 @@
 class SurveysController < ApplicationController
   before_action :authenticate_admin!, except: %i[index show]
+  before_action :set_survey, except: %i[index new create]
 
   def index
     @surveys = Survey.all
   end
   
   def show
-    @survey = Survey.find(params[:id])
     if params[:question_id] == nil and @survey.questions.first != nil
       @question = @survey.questions.first
       @answer = @question.answers.new()
@@ -35,13 +35,7 @@ class SurveysController < ApplicationController
     end
   end
 
-  def edit
-    @survey = Survey.find(params[:id])
-  end
-
   def update
-    @survey = Survey.find(params[:id])
-
     if @survey.update(survey_params)
       redirect_to edit_survey_path(@survey)
       flash.notice = 'Updated survey'
@@ -52,17 +46,15 @@ class SurveysController < ApplicationController
   end
 
   def destroy
-    @survey = Survey.find(params[:survey_id])
-
     @survey.destroy
     redirect_to root_path, status: :see_other
   end
 
-  def report
+  private
+  def set_survey
     @survey = Survey.find(params[:id])
   end
 
-  private
   def survey_params
     params.require(:survey).permit(:title, :description)
   end
