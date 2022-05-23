@@ -1,8 +1,10 @@
 div class='container d-flex align-items-center justify-content-center'
   h1 #{@survey.title}
 - if @question != nil
+
   div class='container d-flex align-items-center justify-content-center'
     h2 Question: #{@question.title}
+
   div class='container d-flex align-items-center justify-content-center'  
     -if @question.question_type == 'multiple_choice'
         = form_with model: @answer do |form|
@@ -32,14 +34,15 @@ div class='container d-flex align-items-center justify-content-center'
             div class='form-check mb-3'
               = form.radio_button :multiple_answer_choice, @answer.question.choice_6, class:'form-check-input'
               = form.label @answer.question.choice_6, class:'form-check-label'
+          
           nav
-          ul class='pagination'
-            - if @question.next != nil
-              li.page-item
-                = form.submit 'Next', class:'page-link'
-            - elsif @question.next == nil
+            ul class='pagination'
+              - if @question.next != nil
                 li.page-item
-                      = form.submit 'Submit', class:'page-link' 
+                  = form.submit 'Next', class:'page-link'
+              - elsif @question.next == nil
+                  li.page-item
+                        = form.submit 'Submit', class:'page-link' 
 
     -elsif @question.question_type == 'open_ended'
         = form_with model: @answer  do |form|
@@ -48,14 +51,15 @@ div class='container d-flex align-items-center justify-content-center'
           div class='mb-3'
             = form.label @answer.question.title, class:'form-label'
             = form.text_area :open_ended_answer, class:'form-control'
+          
           nav
-          ul class='pagination'
-            - if @question.next != nil
-              li.page-item
-                = form.submit 'Next', class:'page-link'
-            - elsif @question.next == nil
+            ul class='pagination'
+              - if @question.next != nil
                 li.page-item
-                      = form.submit 'Submit', class:'page-link' 
+                  = form.submit 'Next', class:'page-link'
+              - elsif @question.next == nil
+                  li.page-item
+                        = form.submit 'Submit', class:'page-link' 
           
     -elsif @question.question_type == 'multiple_answer'
         = form_with model: @answer  do |form|
@@ -86,13 +90,13 @@ div class='container d-flex align-items-center justify-content-center'
               = form.check_box :choice_6, class:'form-check-input'
               = form.label @answer.question.choice_6, class:'form-check-label'
           nav
-          ul class='pagination'
-            - if @question.next != nil
-              li.page-item
-                = form.submit 'Next', class:'page-link'
-            - elsif @question.next == nil
-              li.page-item
-                = form.submit 'Submit', class:'page-link' 
+            ul class='pagination'
+              - if @question.next != nil
+                li.page-item
+                  = form.submit 'Next', class:'page-link'
+              - elsif @question.next == nil
+                li.page-item
+                  = form.submit 'Submit', class:'page-link' 
 - else 
   div class='container d-flex align-items-center justify-content-center'
     div class='alert alert-primary'
